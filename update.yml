@@ -36,7 +36,7 @@
       tags:
         - apache-selinux
 
-     - name: Ensure SELinux mode config is set into 'enforcing' permanently.
+    - name: Ensure SELinux mode config is set into 'enforcing' permanently.
       shell: sh -c "{{ item }}"
       with_items:
         - "sudo vi /etc/selinux/config -c ':%s/SELINUX=permissive/SELINUX=enforcing' -c ':wq'"
