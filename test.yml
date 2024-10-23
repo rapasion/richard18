@@ -1,0 +1,11 @@
+---
+- name: VI using Ansible
+  hosts: all
+  tasks:
+    - name: edit the file using vi
+      shell: sh -c "sudo vi /var/crash/sysadmin/test.txt -c ':%s/test/testrename' -c ':wq'"
+      register: file_contents
+
+    - name: Show file contents
+      ansible.builtin.debug:
+        var: file_contents.stdout
