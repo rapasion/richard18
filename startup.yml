@@ -6,16 +6,16 @@
    tags:
       - startup
 
-  - name: Create startup folder.
-    file:
-      path: "/export/home/gml_source/startup"
-      state: directory
-      owner: "{{ code_user }}"
-      group: "{{ code_user }}"
-      mode: '0750'
-    when: not register_startup_folder.stat.exists
-    tags:
-       - startup
+ - name: Create startup folder.
+   file:
+     path: "/export/home/gml_source/startup"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_startup_folder.stat.exists
+   tags:
+      - startup
 
     - name: Check shared_drive folder exists.
       stat:
