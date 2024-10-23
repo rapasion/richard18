@@ -130,16 +130,16 @@
 #      tags:
 #        - startup
 
-    - name: Create shared_drive folder.
-      file:
-        path: "/export/home/shared_drive"
-        state: directory
-        owner: "{{ code_user }}"
-        group: "{{ code_user }}"
-        mode: '0750'
-      when: not register_startup_folder.stat.exists
-      tags:
-        - startup   
+#    - name: Create shared_drive folder.
+#      file:
+#        path: "/export/home/shared_drive"
+#        state: directory
+#        owner: "{{ code_user }}"
+#        group: "{{ code_user }}"
+#        mode: '0750'
+#      when: not register_startup_folder.stat.exists
+#      tags:
+#        - startup   
 
     - import_tasks: startup.yml
       tags: 
