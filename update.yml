@@ -1,0 +1,124 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Install system updates for centos systems
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Print message
+      debug:
+        msg: Hello Ansible World
+
+    - name: Install system NTP
+      yum:
+        name: ntp
+
+    - name: Create Limits file
+      copy:
+        dest: /etc/security/limits.d/30-nofile.conf
+        content: |
+            *   soft    nofile      16000
+            *   hard    nofile      30000
+
+    - name: Ensure current mode of SELinux is set to enforce.
+      shell: sh -c "sudo setenforce 1"
+      tags:
+        - apache-selinux
+
+    - name: Check if SELinux config is set to 'enforcing' mode.
+      shell: sh -c 'sudo cat /etc/selinux/config | grep -oE "SELINUX=enforcing"'
+      register: selinux_enforcing
+      failed_when: false
+      tags:
+        - apache-selinux
+
+     - name: Ensure SELinux mode config is set into 'enforcing' permanently.
+      shell: sh -c "{{ item }}"
+      with_items:
+        - "sudo vi /etc/selinux/config -c ':%s/SELINUX=permissive/SELINUX=enforcing' -c ':wq'"
+        - "sudo vi /etc/selinux/config -c ':%s/SELINUX=disabled/SELINUX=enforcing' -c ':wq'"
+      when:
+        - selinux_enforcing.rc == 1
+      tags:
+        - apache-selinux
+
+    - name: Ensure {{ code_user }} group exists
+      group:
+        name: "{{ code_user }}"
+        state: present
+
+    - name: Ensure {{ code_user }} belongs to correct primary group
+      ansible.builtin.user:
+        name: "{{ code_user }}"
+        group: "{{ code_user }}"
+
+    - name: Check {{ code_user }} homedir
+      user:
+        name: "{{ code_user }}"
+        state: present
+      register: code_user_var
+
+    - name: GML source Path Exists
+      file:
+        path: "/export/home/{{ code_user }}"
+        state: directory
+        owner: "{{ code_user }}"
+        group: "{{ code_user }}"
+        mode: '775'
+
+    #- name: Change {{ code_user }} homedir
+    #  replace:
+    #    path: /etc/passwd
+    #    regexp: '\/home\/richardp:\/bin\/bash$'
+    #    replace: "/export/home/{{ code_user }}:/bin/bash"
+    #  when:
+    #    - code_user_var.home != '/export/home/{{ code_user }}'
+
+    - name: Ensure GML Source DIR set correct permission
+      shell: sh -c "{{ item }}"
+      with_items:
+        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
+        - "sudo chmod 750 /export/home"
+
+    - name: Ensure Binary Path Exists
+      file:
+        path: "/export/home/gml_source/bin/"
+        state: directory
+        owner: "{{ code_user }}"
+        group: "{{ code_user }}"
+        mode: '0750'
+
+    - name: Source .bashrc for login shells in bash_profile
+      template:
+        src: bash_profile.j2
+        dest: "/home/{{ code_user }}/.bash_profile"
+
+    - name: Ensure correct permission on bash_profile.
+      shell: sh -c "{{ item }}"
+      with_items:
+        - 'sudo chown {{ code_user }}:{{ code_user }} /home/{{ code_user }}/.bash_profile'
+        - 'sudo chmod 400 /home/{{ code_user }}/.bash_profile'
+      tags:
+        - bash_profile
+
+    - name: Check startup folder exists.
+      stat:
+        path: "/export/home/gml_source/startup"
+      register: register_startup_folder
+      tags:
+        - startup
+
+    - name: Create startup folder.
+      file:
+        path: "/export/home/gml_source/startup"
+        state: directory
+        owner: "{{ code_user }}"
+        group: "{{ code_user }}"
+        mode: '0750'
+      when: not register_startup_folder.stat.exists
+      tags:
+        - startup
