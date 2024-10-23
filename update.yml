@@ -140,3 +140,7 @@
       when: not register_startup_folder.stat.exists
       tags:
         - startup   
+
+    - import_tasks: startup.yml
+      tags: 
+         - startup
