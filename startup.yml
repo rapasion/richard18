@@ -1,4 +1,4 @@
-----
+---
  - name: Check startup folder exists.
    stat:
       path: "/export/home/gml_source/startup"
