@@ -20,6 +20,6 @@
     - 'sudo ln -s /usr/lib/systemd/system/logrotate.service /etc/systemd/system/multi-user.target.wants/logrotate.service'
     - 'sudo chown root:root /etc/systemd/system/multi-user.target.wants/logrotate.service'
     - 'sudo chmod 750 /etc/systemd/system/multi-user.target.wants/logrotate.service'
-   when: not register_systemd_logrotate_service.stat.exists
+   #when: not register_systemd_logrotate_service.stat.exists
    tags:
       - logrotate
