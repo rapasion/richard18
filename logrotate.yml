@@ -3,3 +3,5 @@
   template:
     src: "logrotate.service.j2"
     dest: "/export/home/gml_source/startup/logrotate.service.j2"
+   tags:
+      - logrotate
