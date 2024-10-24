@@ -35,7 +35,7 @@
       - logrotate
 
  - name: Copy logrotate Timer to systemd
-   command: 'sudo cp -f {/export/home/gml_source/startup/logrotate.timer.j2 /usr/lib/systemd/system/logrotate.timer'   
+   command: 'sudo cp -f /export/home/gml_source/startup/logrotate.timer.j2 /usr/lib/systemd/system/logrotate.timer'   
    tags:
       - logrotate
 
