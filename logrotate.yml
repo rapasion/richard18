@@ -26,10 +26,10 @@
 
  - name: Export logrotate Timer.
    template:
-     src: "logrotate.timer.j2"
-     dest: "/export/home/gml_source/startup/logrotate.timer.j2"
-     owner: "{{ code_user }}"
-     group: "{{ code_user }}"
+    src: "logrotate.timer.j2"
+    dest: "/export/home/gml_source/startup/logrotate.timer.j2"
+    owner: "{{ code_user }}"
+    group: "{{ code_user }}"
     mode: '0750'
    tags:
       - logrotate
