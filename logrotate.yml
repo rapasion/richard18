@@ -48,4 +48,19 @@
   #when: not register_systemd_logrotate_timer.stat.exists
    tags:
       - logrotate
+
+ - name: Reload systemd
+   command: "sudo systemctl daemon-reload"
+   tags:
+      - logrotate
+
+ - name: Enable logrotate Service
+   shell: sh -c "sudo systemctl enable logrotate.service"
+   tags:
+      - logrotate
+
+ - name: Start logrotate Timer
+   shell: sh -c "sudo systemctl start logrotate.service"
+   tags:
+      - logrotate
       
