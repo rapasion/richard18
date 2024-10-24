@@ -33,6 +33,22 @@
      mode: '0750'
    when: not register_startup_folder.stat.exists
    tags:
+      - startup
+
+ - name: Check shared drive log backup if exists
+   stat:
+      path: "/export/home/shared_drive/log_backup"
+   register: register_shared_drive_log_backup_dir
+   
+ - name: Create shared drive log backup folder
+   file:
+     path: "/export/home/shared_drive/log_backup"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_shared_drive_log_backup_dir.stat.exists
+   tags:
       - startup   
 
 #    - import_tasks: startup.yml
