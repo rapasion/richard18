@@ -89,6 +89,24 @@
    tags:
       - startup
 
+ - name: Check logrotate path Dir Exists
+   stat:
+      path: "/export/home/gml_source/logs/logrotate"
+   register: register_logrotate_folder
+   tags:
+      - startup
+
+ - name: Create logrotate path Dir folder
+   file:
+     path: "/export/home/gml_source/logs/logrotate"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_logrotate_folder.stat.exists
+   tags:
+      - startup
+
 #    - import_tasks: startup.yml
 #      tags: 
 #         - startup
