@@ -39,6 +39,8 @@
    stat:
       path: "/export/home/shared_drive/log_backup"
    register: register_shared_drive_log_backup_dir
+   tags:
+      - startup
    
  - name: Create shared drive log backup folder
    file:
