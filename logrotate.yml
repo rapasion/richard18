@@ -8,3 +8,8 @@
     mode: '0750'
    tags:
       - logrotate
+
+ - name: Copy logrotate Service to systemd
+   command: 'sudo cp -f /export/home/gml_source/startup/logrotate.service.j2 /usr/lib/systemd/system/logrotate.service'
+   tags:
+      - logrotate
