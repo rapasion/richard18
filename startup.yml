@@ -59,7 +59,7 @@
    register: register_gml_logrotate_path
    tags:
       - startup
-	  
+
  - name: Create gml logrotate folder
    file:
      path: "/export/home/gml_source/logs"
