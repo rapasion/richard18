@@ -51,7 +51,25 @@
      mode: '0750'
    when: not register_shared_drive_log_backup_dir.stat.exists
    tags:
-      - startup   
+      - startup
+
+ - name: Check gml logrotate Dir Exists
+   stat:
+      path: "/export/home/gml_source/logs"
+   register: register_gml_logrotate_path
+   tags:
+      - startup
+	  
+ - name: Create gml logrotate folder
+   file:
+     path: "/export/home/gml_source/logs"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_gml_logrotate_path.stat.exists
+   tags:
+      - startup
 
 #    - import_tasks: startup.yml
 #      tags: 
