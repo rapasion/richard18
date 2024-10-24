@@ -71,6 +71,24 @@
    tags:
       - startup
 
+ - name: Check script Dir Exists
+   stat:
+      path: "/export/home/gml_source/script"
+   register: register_script_location
+   tags:
+      - startup
+
+ - name: Create script Dir folder
+   file:
+     path: "/export/home/gml_source/script"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_script_location.stat.exists
+   tags:
+      - startup
+
 #    - import_tasks: startup.yml
 #      tags: 
 #         - startup
