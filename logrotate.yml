@@ -23,3 +23,10 @@
    #when: not register_systemd_logrotate_service.stat.exists
    tags:
       - logrotate
+
+ - name: Export logrotate Timer.
+   template:
+     src: "logrotate.timer.j2"
+     dest: "/export/home/gml_source/startup/logrotate.timer.j2"
+   tags:
+      - logrotate
