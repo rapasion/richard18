@@ -144,3 +144,7 @@
     - import_tasks: startup.yml
       tags: 
          - startup
+
+    - import_tasks: logrotate.yml
+      tags: 
+         - logrotate
