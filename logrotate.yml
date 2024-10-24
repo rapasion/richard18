@@ -13,3 +13,13 @@
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.service.j2 /usr/lib/systemd/system/logrotate.service'
    tags:
       - logrotate
+
+ - name: Create link from systemd - logrotate Service
+   command: "{{ item }}"
+   with_items:
+    - 'sudo ln -s /usr/lib/systemd/system/logrotate.service /etc/systemd/system/multi-user.target.wants/logrotate.service'
+    - 'sudo chown root:root /etc/systemd/system/multi-user.target.wants/logrotate.service'
+    - 'sudo chmod 750 /etc/systemd/system/multi-user.target.wants/logrotate.service'
+   when: not register_systemd_logrotate_service.stat.exists
+   tags:
+      - logrotate
