@@ -33,3 +33,19 @@
     mode: '0750'
    tags:
       - logrotate
+
+ - name: Copy logrotate Timer to systemd
+   command: 'sudo cp -f {/export/home/gml_source/startup/logrotate.timer.j2 /usr/lib/systemd/system/logrotate.timer'   
+   tags:
+      - logrotate
+
+ - name: Create link from systemd - logrotate Timer
+   command: "{{ item }}"
+   with_items:
+    - 'sudo ln -s /usr/lib/systemd/system/logrotate.timer /etc/systemd/system/multi-user.target.wants/logrotate.timer'
+    - 'sudo chown root:root /etc/systemd/system/multi-user.target.wants/logrotate.timer'
+    - 'sudo chmod 750 /etc/systemd/system/multi-user.target.wants/logrotate.timer'
+  #when: not register_systemd_logrotate_timer.stat.exists
+   tags:
+      - logrotate
+      
