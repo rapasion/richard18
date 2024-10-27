@@ -4,7 +4,7 @@
       path: "/export/home/gml_source/startup/logrotate.service.j2"
    register: register_logrotate_service
    tags:
-      - test
+      - logrotate
 
  - name: Export logrotate Service.
    template:
@@ -16,28 +16,28 @@
    when: not register_logrotate_service.stat.exists	
 #    ignore_errors: true
    tags:
-      - test
+      - logrotate
 
  - name: Check logrotate Service to systemd exists.
    stat:
       path: "/usr/lib/systemd/system/logrotate.service"
    register: register_service_systemd
    tags:
-      - test
+      - logrotate
 
  - name: Copy logrotate Service to systemd
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.service.j2 /usr/lib/systemd/system/logrotate.service'
    when: not register_service_systemd.stat.exists
 #   ignore_errors: true
    tags:
-      - test
+      - logrotate
 
  - name: Check link from systemd - logrotate Service exists.
    stat:
       path: "/etc/systemd/system/multi-user.target.wants/logrotate.service"
    register: register_link_systemd_logrotate_service
    tags:
-      - test
+      - logrotate
 
  - name: Create link from systemd - logrotate Service
    command: "{{ item }}"
@@ -48,14 +48,14 @@
 #   ignore_errors: true
    when: not register_link_systemd_logrotate_service.stat.exists
    tags:
-      - test
+      - logrotate
 
  - name: Check logrotate timer exists.
    stat:
       path: "/export/home/gml_source/startup/logrotate.timer.j2"
    register: register_logrotate_timer
    tags:
-      - test	  
+      - logrotate
 
  - name: Export logrotate Timer.
    template:
@@ -67,21 +67,28 @@
    when: not register_logrotate_timer.stat.exists	
 #   ignore_errors: true
    tags:
-      - test
+      - logrotate
 
  - name: Check logrotate timer to systemd exists.
    stat:
       path: "/usr/lib/systemd/system/logrotate.timer"
    register: register_timer_systemd
    tags:
-      - test
+      - logrotate
 
  - name: Copy logrotate Timer to systemd
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.timer.j2 /usr/lib/systemd/system/logrotate.timer'
 #   ignore_errors: true
    when: not register_timer_systemd.stat.exists
    tags:
-      - test
+      - logrotate
+
+ - name: Check link from systemd - logrotate timer exists.
+   stat:
+      path: "/etc/systemd/system/multi-user.target.wants/logrotate.timer"
+   register: register_link_systemd_logrotate_timer
+   tags:
+      - logrotate
 
  - name: Create link from systemd - logrotate Timer
    command: "{{ item }}"
@@ -90,7 +97,7 @@
     - 'sudo chown root:root /etc/systemd/system/multi-user.target.wants/logrotate.timer'
     - 'sudo chmod 750 /etc/systemd/system/multi-user.target.wants/logrotate.timer'
 #   ignore_errors: true
-  #when: not register_systemd_logrotate_timer.stat.exists
+   when: not register_link_systemd_logrotate_timer.stat.exists
    tags:
       - logrotate
 
