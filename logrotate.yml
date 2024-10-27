@@ -32,6 +32,13 @@
    tags:
       - test
 
+ - name: Check link from systemd - logrotate Service exists.
+   stat:
+      path: "/etc/systemd/system/multi-user.target.wants/logrotate.service"
+   register: register_link_systemd_logrotate_service
+   tags:
+      - test
+
  - name: Create link from systemd - logrotate Service
    command: "{{ item }}"
    with_items:
@@ -39,9 +46,9 @@
     - 'sudo chown root:root /etc/systemd/system/multi-user.target.wants/logrotate.service'
     - 'sudo chmod 750 /etc/systemd/system/multi-user.target.wants/logrotate.service'
 #   ignore_errors: true
-   #when: not register_systemd_logrotate_service.stat.exists
+   when: not register_link_systemd_logrotate_service.stat.exists
    tags:
-      - logrotate
+      - test
 
  - name: Export logrotate Timer.
    template:
