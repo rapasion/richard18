@@ -1,7 +1,7 @@
 ---
  - name: Check startup folder exists.
    stat:
-      path: "/export/home/gml_source/startup"
+      path: "{{ gml_source_path }}/startup"
    register: register_startup_folder
    tags:
       - startup
