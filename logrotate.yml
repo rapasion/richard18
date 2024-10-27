@@ -5,7 +5,7 @@
    register: register_logrotate_service
    tags:
       - test
-	  
+
  - name: Export logrotate Service.
    template:
     src: "logrotate.service.j2"
