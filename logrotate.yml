@@ -69,11 +69,19 @@
    tags:
       - test
 
+ - name: Check logrotate timer to systemd exists.
+   stat:
+      path: "/usr/lib/systemd/system/logrotate.timer"
+   register: register_timer_systemd
+   tags:
+      - test
+
  - name: Copy logrotate Timer to systemd
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.timer.j2 /usr/lib/systemd/system/logrotate.timer'
 #   ignore_errors: true
+   when: not register_timer_systemd.stat.exists
    tags:
-      - logrotate
+      - test
 
  - name: Create link from systemd - logrotate Timer
    command: "{{ item }}"
