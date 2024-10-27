@@ -18,11 +18,19 @@
    tags:
       - test
 
+ - name: Check logrotate Service to systemd exists.
+   stat:
+      path: "/usr/lib/systemd/system/logrotate.service"
+   register: register_service_systemd
+   tags:
+      - test
+
  - name: Copy logrotate Service to systemd
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.service.j2 /usr/lib/systemd/system/logrotate.service'
+   when: not register_service_systemd.stat.exists
 #   ignore_errors: true
    tags:
-      - logrotate
+      - test
 
  - name: Create link from systemd - logrotate Service
    command: "{{ item }}"
