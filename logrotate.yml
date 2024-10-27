@@ -1,4 +1,11 @@
 ---
+ - name: Check logrotate Service exists.
+   stat:
+      path: "/export/home/gml_source/startup/logrotate.service.j2"
+   register: register_logrotate_service
+   tags:
+      - test
+	  
  - name: Export logrotate Service.
    template:
     src: "logrotate.service.j2"
@@ -6,9 +13,10 @@
     owner: "{{ code_user }}"
     group: "{{ code_user }}"
     mode: '0750'
+   when: not register_logrotate_service.stat.exists	
 #    ignore_errors: true
    tags:
-      - logrotate
+      - test
 
  - name: Copy logrotate Service to systemd
    command: 'sudo cp -f /export/home/gml_source/startup/logrotate.service.j2 /usr/lib/systemd/system/logrotate.service'
