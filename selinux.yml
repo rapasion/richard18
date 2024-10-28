@@ -30,5 +30,19 @@
      - setools_libs_check.rc == 1
    tags:
      - selinux
- 
-     
+
+ - name: Check if setools-console is installed
+   shell: sh -c "rpm -qa | grep setools-console-3.3.8-4.el7.x86_64"
+   register: setools_console_check
+   failed_when: false
+   tags:
+     - selinux
+
+ - name: Install setools-console RPM dependencies
+   shell: sh -c "sudo yum install -y {{ item }}"
+   with_items:
+       - setools
+   when:
+     - setools_console_check.rc == 1
+   tags:
+     - selinux
