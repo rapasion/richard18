@@ -46,3 +46,19 @@
      - setools_console_check.rc == 1
    tags:
      - selinux
+
+ - name: Check if setroubleshoot is installed
+   shell: sh -c "rpm -qa | grep setroubleshoot"
+   register: se_troubleshoot_check
+   failed_when: false
+   tags:
+     - selinux	 
+	 
+ - name: Install SELinux packages
+   shell: sh -c "sudo yum install -y {{ item }}"
+   with_items:
+     - setroubleshoot
+   when:
+     - se_troubleshoot_check.rc == 1
+   tags:
+     - selinux
