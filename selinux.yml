@@ -14,3 +14,14 @@
      - policycoreutils-python
    tags:
      - selinux
+
+ - name: Install setools-libs RPM dependencies
+   shell: sh -c "sudo yum install -y {{ item }}"
+   with_items:
+       - setools
+   when:
+     - setools_libs_check.rc == 1
+   tags:
+     - selinux
+ 
+     
