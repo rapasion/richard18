@@ -15,7 +15,7 @@
    tags:
      - selinux
 
-  - name: Check if setools-libs is installed
+ - name: Check if setools-libs is installed
    shell: sh -c "rpm -qa | grep setools"
    register: setools_libs_check
    failed_when: false
