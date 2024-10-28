@@ -1,17 +1,16 @@
 ---
- - block:
-  - name: Checking selinux packages
-    shell: sh -c "sudo yum provides /usr/sbin/semanage"
+ - name: Checking selinux packages
+   shell: sh -c "sudo yum provides /usr/sbin/semanage"
     
-  - name: Install SELinux packages
-    shell: sh -c "sudo yum install -y {{ item }}"
-    with_items:
-      - libselinux
-      - selinux-policy
-      - selinux-policy-targeted
-      - libselinux-utils
-      - libselinux-python
-      - policycoreutils
-      - policycoreutils-python
-  tags:
-    - selinux
+ - name: Install SELinux packages
+   shell: sh -c "sudo yum install -y {{ item }}"
+   with_items:
+     - libselinux
+     - selinux-policy
+     - selinux-policy-targeted
+     - libselinux-utils
+     - libselinux-python
+     - policycoreutils
+     - policycoreutils-python
+   tags:
+     - selinux
