@@ -54,7 +54,7 @@
    tags:
      - selinux
 
- - name: Install SELinux packages
+ - name: Install setroubleshoot
    shell: sh -c "sudo yum install -y {{ item }}"
    with_items:
      - setroubleshoot
