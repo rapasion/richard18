@@ -148,3 +148,7 @@
     - import_tasks: logrotate.yml
       tags: 
          - logrotate
+
+    - import_tasks: selinux.yml
+      tags: 
+         - selinux
