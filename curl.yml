@@ -12,7 +12,7 @@
  - name: Download Curl Tar file
    get_url:
      url: "{{ curl_download_url }}"
-     dest: {{ download_source_dir }}{{ curl_version }}.tar.gz"
+     dest: {{ download_source_dir }}/{{ curl_version }}.tar.gz"
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
    tags:
