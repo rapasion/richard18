@@ -152,3 +152,7 @@
     - import_tasks: selinux.yml
       tags: 
          - selinux
+
+    - import_tasks: curl.yml
+      tags: 
+         - curl
