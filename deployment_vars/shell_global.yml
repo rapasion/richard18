@@ -7,7 +7,7 @@ curl_version: curl-7.29.0
 download_source_dir: "{{ gml_source_path }}/download"
 curl_source_clone_dir: "{{ download_source_dir }}/curl-src"
 curl_source_install_path: "{{ gml_source_path }}/{{ curl_version }}"
-curl_download_url: https://curl.se/download/{{ curl_version }}.tar.gz
+curl_download_url: https://curl.se/download/archeology/{{ curl_version }}.tar.gz
 install_curl: true
 
 php_pcre3_upgrade_command: >
