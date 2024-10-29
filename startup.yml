@@ -107,6 +107,24 @@
    tags:
       - startup
 
+ - name: Check download folder exists.
+   stat:
+      path: "{{ gml_source_path }}/download"
+   register: register_download_folder
+   tags:
+      - startup
+
+ - name: Create donwload folder.
+   file:
+     path: "{{ gml_source_path }}/download"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '0750'
+   when: not register_download_folder.stat.exists
+   tags:
+      - startup
+
 #    - import_tasks: startup.yml
 #      tags: 
 #         - startup
