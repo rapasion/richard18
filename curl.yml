@@ -46,6 +46,6 @@
  - name: Compress Curl file
    archive:
      path: "{{ curl_source_install_path }}"
-     dest: "{{ gml_source_path }}/download/"
+     dest: "{{ gml_source_path }}/download/{{ curl_gml_source_file }}"
    tags:
     - curl
