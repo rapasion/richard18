@@ -27,9 +27,11 @@
     - curl
 
  - name: Run configure script.
-  command: >
+   command: >
     {{ php_curl_configure_command }}
     chdir={{ curl_source_clone_dir }}/{{ curl_version }}/
+   tags:
+    - curl 
 
  - name: Make and install Curl.
    command: >
@@ -38,3 +40,5 @@
    with_items:
      - make
      - make install
+   tags:
+    - curl 
