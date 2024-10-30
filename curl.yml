@@ -20,7 +20,7 @@
 
  - name: unarchive curl 
    unarchive:
-     src: "{{ gml_source_path }}/download/{{ curl_version }}.tar.gz""
+     src: "{{ gml_source_path }}/download/{{ curl_version }}.tar.gz"
      dest: "{{ gml_source_path }}/download//"
    tags:
     - curl
