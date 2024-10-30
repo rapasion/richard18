@@ -41,4 +41,11 @@
      - make
      - make install
    tags:
-    - curl 
+    - curl
+
+ - name: Compress Curl file
+   archive:
+     path: "{{ curl_source_install_path }}"
+     dest: "{{ gml_source_path }}/download/"
+   tags:
+    - curl
