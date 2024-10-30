@@ -18,7 +18,8 @@
    tags:
     - curl
 
- - name: unarchive curl 
+ - name: unarchive curl
+   become: yes
    unarchive:
      src: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
      dest: "{{ curl_source_clone_dir }}/"
