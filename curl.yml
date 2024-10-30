@@ -19,10 +19,9 @@
     - curl
 
  - name: unarchive curl
-   become: yes
    unarchive:
      src: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
      dest: "{{ curl_source_clone_dir }}/"
-     mode: '0775'
+     remote_src: yes
    tags:
     - curl
