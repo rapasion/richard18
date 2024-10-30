@@ -15,6 +15,7 @@
      dest: "{{ gml_source_path }}/download/{{ curl_version }}.tar.gz"
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
+     mode: 0750
    tags:
     - curl
 
