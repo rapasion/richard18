@@ -25,3 +25,16 @@
      remote_src: yes
    tags:
     - curl
+
+ - name: Run configure script.
+  command: >
+    {{ php_curl_configure_command }}
+    chdir={{ curl_source_clone_dir }}/{{ curl_version }}/
+
+ - name: Make and install Curl.
+   command: >
+     {{ item }}
+     chdir={{ curl_source_clone_dir }}/{{ curl_version }}/
+   with_items:
+     - make
+     - make install
