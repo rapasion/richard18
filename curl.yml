@@ -22,5 +22,6 @@
    unarchive:
      src: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
      dest: "{{ curl_source_clone_dir }}/"
+     mode: '0775'
    tags:
     - curl
