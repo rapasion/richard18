@@ -46,6 +46,16 @@
    tags:
     - curl
 
+ - name: curl install Path Exists
+   file:
+     path: "{{ curl_source_install_path }}"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: '775'
+   tags:
+    - curl
+
  - name: Compress Curl file
    archive:
      path: "{{ curl_source_install_path }}"
