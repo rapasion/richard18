@@ -22,6 +22,9 @@
    unarchive:
      src: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
      dest: "{{ curl_source_clone_dir }}/"
+     mode: '0750'
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
      remote_src: yes
    tags:
     - curl
