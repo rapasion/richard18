@@ -52,7 +52,7 @@
      state: directory
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
-     mode: '775'
+     mode: '0750'
    tags:
     - curl
 
