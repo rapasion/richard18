@@ -91,4 +91,14 @@
    with_items:
      - curl
    tags:
-    - curl_tar_file    
+    - curl_tar_file
+
+ - name: chmod include directory
+   file:
+     path: "{{ gml_source_path }}/include"
+     state: directory
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+	    mode: "0750"
+   tags:
+    - curl_tar_file
