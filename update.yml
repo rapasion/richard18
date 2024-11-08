@@ -156,3 +156,7 @@
     - import_tasks: curl.yml
       tags: 
          - curl
+
+    - import_tasks: curltarfile.yml
+      tags: 
+         - curl_tar_file
