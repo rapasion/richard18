@@ -93,12 +93,10 @@
    tags:
     - curl_tar_file
 
- - name: chmod include directory
-   file:
-     path: "{{ gml_source_path }}/include"
-     state: directory
-     owner: "{{ code_user }}"
-     group: "{{ code_user }}"
-     mode: "0750"
+ - name: ensure include directory correct permission
+   shell: sh -c "{{ item }}"
+   with_items:
+     - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}/include"
+     - "sudo chmod 750 {{ gml_source_path }}/include"
    tags:
     - curl_tar_file
