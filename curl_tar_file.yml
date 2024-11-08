@@ -1,0 +1,10 @@
+---
+ - name: unarchive curl file
+   unarchive:
+     src: "{{ gml_source_path }}/download/{{ curl_gml_source_file }}"
+     dest: "{{ gml_source_path }}/"
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: "0750"
+   tags:
+    - curl_tar_file
