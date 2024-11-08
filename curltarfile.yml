@@ -99,6 +99,6 @@
      state: directory
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
-	    mode: "0750"
+     mode: "0750"
    tags:
     - curl_tar_file
