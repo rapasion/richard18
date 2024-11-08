@@ -81,3 +81,14 @@
    when: not gml_source_bin.stat.exists
    tags:
     - curl_tar_file
+
+ - name: Link curl includes
+   file:
+     src: "{{ curl_source_install_path }}/include/{{ item }}"
+     dest: "{{ gml_source_path }}/include/{{ item }}"
+     state: link
+     force: yes
+   with_items:
+     - curl
+   tags:
+    - curl_tar_file    
