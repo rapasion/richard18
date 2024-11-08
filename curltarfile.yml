@@ -34,7 +34,7 @@
    register: gml_source_lib_pkgconfig
    tags:
     - curl_tar_file
-	
+
  - name: Create {{ gml_source_path }}/lib/pkgconfig folder if not exist.
    file:
      path: "{{ gml_source_path }}/lib/pkgconfig"
