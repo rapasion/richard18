@@ -138,9 +138,11 @@
     - curl_tar_file
 
  - name: Set selinux context for curl
+   become: yes
    shell: "sudo semanage fcontext -a -t bin_t '{{ gml_source_path }}/{{curl_version}}/bin(/.*)?'"
    tags: curl_tar_file
 
  - name: Set selinux context for curl libs
+   become: yes
    shell: "sudo semanage fcontext -a -t lib_t '{{ gml_source_path }}/{{curl_version}}/lib(/.*)?'"
    tags: curl_tar_file
