@@ -122,7 +122,7 @@
  - name: ensure include directory correct permission
    shell: sh -c "{{ item }}"
    with_items:
-     - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}/include"
-     - "sudo chmod 750 {{ gml_source_path }}/include"
+     - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}"
+     - "sudo chmod 750 {{ gml_source_path }}"
    tags:
     - curl_tar_file
