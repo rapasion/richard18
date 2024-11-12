@@ -123,7 +123,7 @@
    file:
      src: "{{ curl_source_install_path }}/lib/pkgconfig/{{ item }}"
      dest: "{{ gml_source_path }}/lib/pkgconfig/{{ item }}"
-     state: absent
+     state: link
    with_items:
      - libcurl.pc
    tags:
