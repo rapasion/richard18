@@ -136,3 +136,11 @@
      - "sudo chmod 750 {{ gml_source_path }}"
    tags:
     - curl_tar_file
+
+ - name: Set selinux context for curl
+   shell: "sudo semanage fcontext -a -t bin_t '{{ gml_source_path }}/{{curl_version}}/bin(/.*)?'"
+   tags: curl_tar_file
+
+ - name: Set selinux context for curl libs
+   shell: "sudo semanage fcontext -a -t lib_t '{{ gml_source_path }}/{{curl_version}}/lib(/.*)?'"
+   tags: curl_tar_file
