@@ -93,6 +93,18 @@
    tags:
     - curl_tar_file
 
+ - name: Link curl Bin
+   file:
+     src: "{{ curl_source_install_path }}/bin/{{ item }}"
+     dest: "{{ gml_source_path }}/bin/{{ item }}"
+     state: link
+     force: yes
+   with_items:
+     - curl
+     - curl-config
+   tags:
+    - curl_tar_file
+
  - name: ensure include directory correct permission
    shell: sh -c "{{ item }}"
    with_items:
