@@ -9,10 +9,10 @@
    tags: 
       - pcre
 
- - name: Download Curl Tar file
+ - name: pcre3 source file
    get_url:
-     url: "{{ curl_download_url }}"
-     dest: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
+     url: "{{ pcre_download_url }}"
+     dest: "{{ pcre_source_clone_dir }}/"
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
    tags: 
