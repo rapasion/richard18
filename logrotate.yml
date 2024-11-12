@@ -102,6 +102,7 @@
       - logrotate
 
  - name: Reload systemd
+   become: yes
    command: "sudo systemctl daemon-reload"
    tags:
       - logrotate
