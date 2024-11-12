@@ -8,3 +8,12 @@
      group: "{{ code_user }}"
    tags: 
       - pcre
+
+ - name: Download Curl Tar file
+   get_url:
+     url: "{{ curl_download_url }}"
+     dest: "{{ curl_source_clone_dir }}/{{ curl_version }}.tar.gz"
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+   tags: 
+      - pcre
