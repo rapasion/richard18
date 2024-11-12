@@ -67,6 +67,14 @@
    tags: 
       - pcre
 
+ - name: ensure include directory correct permission
+   shell: sh -c "{{ item }}"
+   with_items:
+     - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}"
+     - "sudo chmod 750 {{ gml_source_path }}"
+   tags:
+    - pcre
+
  - name: Compress Pcre file
    archive:
      path: "{{ pcre_source_install_path }}"
