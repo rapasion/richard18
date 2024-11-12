@@ -1,4 +1,25 @@
 ---
+ - name: Check if 'Develop Tools' is installed.
+   become: true
+   become_user: root
+   become_method: sudo
+   register: os_dev_tools
+   shell: sh -c "sudo {{ item }}"
+   with_items:
+     - "yum grouplist Dev* installed ..."
+   tags:
+     - pcre
+
+ - name: Install 'Development tools' if not exists.
+   become: true
+   become_user: root
+   become_method: sudo
+   yum: 
+     name: "@development"
+     state: present
+   tags:
+     - pcre
+
  - name: Ensure pCRE Download Path Exist
    file:
      path: "{{ pcre_source_clone_dir }}"
