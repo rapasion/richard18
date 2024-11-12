@@ -119,6 +119,16 @@
    tags:
     - curl_tar_file
 
+ - name: Link Pkg files
+   file:
+     src: "{{ curl_source_install_path }}/lib/pkgconfig/{{ item }}"
+     dest: "{{ gml_source_path }}/lib/pkgconfig/{{ item }}"
+     state: absent
+   with_items:
+     - libcurl.pc
+   tags:
+    - curl_tar_file
+
  - name: ensure include directory correct permission
    shell: sh -c "{{ item }}"
    with_items:
