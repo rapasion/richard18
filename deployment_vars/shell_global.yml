@@ -18,7 +18,8 @@ install_pcre: true
 pcre_version: pcre-8.43
 pcre_source_clone_dir: "{{ download_source_dir }}/pcre-src"
 pcre_source_install_path: "{{ gml_source_path }}/{{ pcre_version }}"
-pcre_download_url: "https://ftp.pcre.org/pub/pcre/{{ pcre_version }}.tar.gz"
+#pcre_download_url: "https://ftp.pcre.org/pub/pcre/{{ pcre_version }}.tar.gz"
+pcre_download_url: "http://ftp.cs.stanford.edu/pub/exim/pcre/{{ pcre_version }}.tar.gz"
 remote_user: "{{ code_user }}"
 
 curl_gml_source_file: export_gml_source_curl_7_29_0.tar.gz
