@@ -71,7 +71,7 @@
    archive:
      path: "{{ pcre_source_install_path }}"
      dest: "{{ gml_source_path }}/download/{{ pcre_gml_source_file }}"
-	    owner: "{{ code_user }}"
+     owner: "{{ code_user }}"
      group: "{{ code_user }}"
      mode: '0750'
    tags: 
