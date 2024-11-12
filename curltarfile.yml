@@ -105,6 +105,20 @@
    tags:
     - curl_tar_file
 
+ - name: Link Curl Files
+   file:
+     src: "{{ curl_source_install_path }}/lib/{{ item }}"
+     dest: "{{ gml_source_path }}/lib/{{ item }}"
+     state: link
+   with_items:
+     - libcurl.a
+     - libcurl.la
+     - libcurl.so
+     - libcurl.so.4
+     - libcurl.so.4.3.0
+   tags:
+    - curl_tar_file
+
  - name: ensure include directory correct permission
    shell: sh -c "{{ item }}"
    with_items:
