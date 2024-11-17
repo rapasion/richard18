@@ -191,3 +191,7 @@
     - import_tasks: install_rsync.yml
       tags: 
          - rsync
+
+    - import_tasks: install_yajl.yml
+      tags: 
+         - yajl
