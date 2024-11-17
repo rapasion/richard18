@@ -163,7 +163,8 @@
 
     - import_tasks: pcre.yml
       tags: 
-         - pcre    - import_tasks: pcretarfile.yml
+         - pcre
+         
+    - import_tasks: pcretarfile.yml
       tags: 
-         - curl_tar_file
-
+         - pcre_tar_file
