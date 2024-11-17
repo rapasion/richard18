@@ -11,6 +11,7 @@
     - yajl
 
  - name: Set selinux context for libyajl
-   shell: "sudo semanage fcontext -a -t lib_t '{{gml_source_path}}/lib(/.*)?'"
+   become: yes
+   shell: "semanage fcontext -a -t lib_t '{{gml_source_path}}/lib(/.*)?'"
    tags:
      - yajl
