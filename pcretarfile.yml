@@ -120,11 +120,13 @@
     - pcre_tar_file
 
  - name: Set selinux context for pcre bin
-   shell: "sudo semanage fcontext -a -t bin_t '{{ gml_source_path }}/{{pcre_version}}(/.*)?'"
+   become: yes
+   shell: "semanage fcontext -a -t bin_t '{{ gml_source_path }}/{{pcre_version}}(/.*)?'"
    tags:
     - pcre_tar_file
 
  - name: Set selinux context for curl
-   shell: "sudo semanage fcontext -a -t lib_t '{{ gml_source_path }}/{{pcre_version}}/lib(/.*)?'"
+   become: yes
+   shell: "semanage fcontext -a -t lib_t '{{ gml_source_path }}/{{pcre_version}}/lib(/.*)?'"
    tags:
     - pcre_tar_file
