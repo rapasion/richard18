@@ -1,0 +1,16 @@
+---
+ - name: unarchive yajl file
+   unarchive:
+     src: "{{ gml_source_path }}/download/{{ yajl_gml_source_file }}"
+     dest: "{{ gml_source_path }}/lib/"
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+     mode: "0750"
+	 remote_src: yes
+   tags: 
+    - yajl
+
+ - name: Set selinux context for libyajl
+   shell: "sudo semanage fcontext -a -t lib_t '{{gml_source_path}}/lib(/.*)?'"
+   tags:
+     - yajl
