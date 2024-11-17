@@ -21,6 +21,7 @@ pcre_source_install_path: "{{ gml_source_path }}/{{ pcre_version }}"
 #pcre_download_url: "https://ftp.pcre.org/pub/pcre/{{ pcre_version }}.tar.gz"
 pcre_download_url: "http://ftp.cs.stanford.edu/pub/exim/pcre/{{ pcre_version }}.tar.gz"
 remote_user: "{{ code_user }}"
+yajl_gml_download_url: "https://github.com/rapasion/richard18/blob/main/downloads/export_gml_source_yajl_v1.1.tar.gz"
 
 curl_gml_source_file: export_gml_source_curl_7_29_0.tar.gz
 pcre_gml_source_file: export_gml_source_pcre_8_43.tar.gz
