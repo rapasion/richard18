@@ -62,13 +62,23 @@
         state: present
       register: code_user_var
 
-    - name: GML source Path Exists
+    - name: Check {{ gml_source_path }}/lib folder if exist.
+      stat:
+        path: "{{ gml_source_path }}/lib"
+      register: gml_source_lib
+      tags:
+        - startup
+
+    - name: Create {{ gml_source_path }}/lib folder if not exist.
       file:
-        path: "/export/home/{{ code_user }}"
+        path: "{{ gml_source_path }}/lib"
         state: directory
         owner: "{{ code_user }}"
         group: "{{ code_user }}"
-        mode: '775'
+        mode: "0750"
+      when: not gml_source_lib.stat.exists
+      tags:
+        - startup		
 
     #- name: Change {{ code_user }} homedir
     #  replace:
