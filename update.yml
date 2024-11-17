@@ -188,3 +188,6 @@
     - import_tasks: pcretarfile.yml
       tags: 
          - pcre_tar_file
+    - import_tasks: install_rsync.yml
+      tags: 
+         - rsync
