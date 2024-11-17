@@ -129,7 +129,7 @@
    tags:
     - curl_tar_file
 
- - name: ensure include directory correct permission
+ - name: ensure gml directory correct permission
    shell: sh -c "{{ item }}"
    with_items:
      - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}"
