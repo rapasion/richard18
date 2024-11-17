@@ -125,7 +125,7 @@
    tags:
     - pcre_tar_file
 
- - name: Set selinux context for curl
+ - name: Set selinux context for pcre
    become: yes
    shell: "semanage fcontext -a -t lib_t '{{ gml_source_path }}/{{pcre_version}}/lib(/.*)?'"
    tags:
