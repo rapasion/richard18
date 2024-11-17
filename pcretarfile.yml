@@ -111,6 +111,14 @@
    tags:
     - pcre_tar_file
 
+ - name: ensure gml directory correct permission
+   shell: sh -c "{{ item }}"
+   with_items:
+     - "sudo chown -R {{ code_user }}:{{ code_user }} {{ gml_source_path }}"
+     - "sudo chmod 750 {{ gml_source_path }}"
+   tags:
+    - pcre_tar_file
+
  - name: Set selinux context for pcre bin
    shell: "sudo semanage fcontext -a -t bin_t '{{ gml_source_path }}/{{pcre_version}}(/.*)?'"
    tags:
