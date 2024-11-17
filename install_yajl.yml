@@ -1,4 +1,13 @@
 ---
+ - name: Download yajl Tar file
+   get_url:
+     url: "{{ yajl_gml_download_url }}"
+     dest: {{ gml_source_path }}/download/"
+     owner: "{{ code_user }}"
+     group: "{{ code_user }}"
+   tags:
+    - yajl
+    
  - name: unarchive yajl file
    unarchive:
      src: "{{ gml_source_path }}/download/{{ yajl_gml_source_file }}"
