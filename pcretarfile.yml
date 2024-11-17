@@ -6,9 +6,11 @@
      owner: "{{ code_user }}"
      group: "{{ code_user }}"
      mode: "0750"
+     remote_src: yes
    tags:
     - pcre_tar_file
-  - name: Check {{ gml_source_path }}/lib folder if exist.
+    
+ - name: Check {{ gml_source_path }}/lib folder if exist.
    stat:
      path: "{{ gml_source_path }}/lib"
    register: gml_source_lib
