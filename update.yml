@@ -62,21 +62,21 @@
         state: present
       register: code_user_var
 
-    - name: Check {{ gml_source_path }}/lib folder if exist.
+    - name: Check {{ gml_source_path }} folder if exist.
       stat:
-        path: "{{ gml_source_path }}/lib"
-      register: gml_source_lib
+        path: "{{ gml_source_path }}"
+      register: gml_source
       tags:
         - startup
 
-    - name: Create {{ gml_source_path }}/lib folder if not exist.
+    - name: Create {{ gml_source_path }} folder if not exist.
       file:
-        path: "{{ gml_source_path }}/lib"
+        path: "{{ gml_source_path }}"
         state: directory
         owner: "{{ code_user }}"
         group: "{{ code_user }}"
         mode: "0750"
-      when: not gml_source_lib.stat.exists
+      when: not gml_source.stat.exists
       tags:
         - startup		
 
