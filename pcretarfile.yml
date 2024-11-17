@@ -1,5 +1,5 @@
 ---
- - name: unarchive curl file
+ - name: unarchive pcre file
    unarchive:
      src: "{{ gml_source_path }}/download/{{ pcre_gml_source_file }}"
      dest: "{{ gml_source_path }}/"
