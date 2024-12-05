@@ -196,6 +196,6 @@
       tags: 
          - yajl
       
-    - import_tasks: libzip_yajl.yml
+    - import_tasks: libzip.yml
       tags: 
          - libzip
