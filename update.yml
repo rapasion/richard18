@@ -199,3 +199,7 @@
     - import_tasks: libzip.yml
       tags: 
          - libzip
+
+    - import_tasks: oniguruma.yml
+      tags: 
+         - oniguruma
