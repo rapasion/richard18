@@ -8,3 +8,32 @@
       package:
         name: epel-release 
         state: present
+
+    - name: Ensure dependencies for building from source are installed (RedHat).
+      become: yes
+      become_user: root
+      become_method: sudo
+      yum:
+        name:
+          - autoconf
+          - automake
+          - libtool
+          - bison
+          - make
+          - recode-devel
+          - aspell-devel
+          - libxml2-devel
+          - pkgconfig
+          - libmcrypt-devel
+          - t1lib-devel
+          - libXpm-devel
+          - libpng-devel
+          - libjpeg-turbo-devel
+          - bzip2-devel
+          - openssl-devel
+          - freetype-devel
+          - libicu-devel
+          - mariadb-devel
+          - gmp-devel
+          - expat-devel
+        state: present
