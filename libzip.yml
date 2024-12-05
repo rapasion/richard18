@@ -4,7 +4,7 @@
    register: libzip_check
    failed_when: false
    tags: 
-         - libzip
+    - libzip
 
  - name: Install Libzip RPMs dependencies
    shell: sh -c "sudo rpm -i {{ item }}"
@@ -13,11 +13,11 @@
    when: 
      - libzip_check.rc == 1
    tags: 
-         - libzip
+     - libzip
 
  - name: Check if Libzip-Devel is installed
    shell: sh -c "rpm -qa | grep libzip-devel"
    register: libzip_devel_check
    failed_when: false
    tags: 
-         - libzip
+    - libzip
