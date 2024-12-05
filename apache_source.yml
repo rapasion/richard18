@@ -6,7 +6,5 @@
 
     - name:Ensure epel-release is are installed (RedHat).
       package:
-        name:
-          - epel-release
+        name: epel-release 
         state: present
-      when: ansible_os_family == 'RedHat'
