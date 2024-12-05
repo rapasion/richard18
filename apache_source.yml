@@ -37,3 +37,11 @@
           - gmp-devel
           - expat-devel
         state: present
+
+    - name: Create directory for HTTPD installer directory if it does not exist
+      file:
+        path: "{{ httpd_installer_dir }}"
+        state: directory
+        owner: "{{ code_user }}"
+        group: "{{ code_user }}"
+        mode: "0750"
