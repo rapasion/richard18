@@ -5,7 +5,7 @@
    failed_when: false
    tags: 
     - oniguruma
-	
+
  - name: Install Oniguruma RPMs dependencies
    shell: sh -c "sudo rpm -i {{ item }}"
    with_items:
