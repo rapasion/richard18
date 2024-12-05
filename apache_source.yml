@@ -45,3 +45,8 @@
         owner: "{{ code_user }}"
         group: "{{ code_user }}"
         mode: "0750"
+
+    - name: Download latest stable version of HTTPD
+      get_url:
+        url: "{{ httpd_source_url }}"
+        dest: "{{ httpd_installer_dir }}"
