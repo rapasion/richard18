@@ -29,4 +29,4 @@ yajl_gml_source_file: export_gml_source_yajl_v1.1.tar.gz
 
 httpd_installer_dir: "/export/home/hmsops/httpd-src/"
 httpd_source_url: "http://archive.apache.org/dist/httpd/{{ httpd_source_version }}.tar.gz"
-httpd_version: "2.4.59"
+httpd_source_version: "2.4.59"
