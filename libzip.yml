@@ -9,7 +9,7 @@
  - name: Install Libzip RPMs dependencies
    shell: sh -c "sudo rpm -i {{ item }}"
    with_items:
-     - "{{ playbook_dir }}/downloads/libzip-0.11.2-6.el7.psychotic.x86_64.rpm"
+     - "{{ gml_source_path }}/download/libzip-0.11.2-6.el7.psychotic.x86_64.rpm"
    when: 
      - libzip_check.rc == 1
    tags: 
@@ -25,7 +25,7 @@
  - name: Install Libzip-Devel RPMs dependencies
    shell: sh -c "sudo rpm -i {{ item }}"
    with_items:
-    - "{{ playbook_dir }}/downloads/libzip-devel-0.11.2-6.el7.psychotic.x86_64.rpm"
+    - "{{ gml_source_path }}/download/libzip-devel-0.11.2-6.el7.psychotic.x86_64.rpm"
    when: 
      - libzip_devel_check.rc == 1
    tags: 
