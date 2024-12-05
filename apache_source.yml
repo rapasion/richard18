@@ -57,8 +57,8 @@
         dest: "{{ httpd_installer_dir }}"
         remote_src: yes
 
-   - name: Ensure GML Source DIR set correct permission
+    - name: Ensure GML Source DIR set correct permission
       shell: sh -c "{{ item }}"
-        with_items:
-          - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
-          - "sudo chmod 750 /export/home"
+      with_items:
+        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
+        - "sudo chmod 750 /export/home"
