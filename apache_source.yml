@@ -50,3 +50,9 @@
       get_url:
         url: "{{ httpd_source_url }}"
         dest: "{{ httpd_installer_dir }}"
+
+    - name: Extract downloaded HTTPD tar.gz file
+      unarchive:
+        src: "{{ httpd_installer_dir }}/{{ httpd_source_version }}.tar.gz"
+        dest: "{{ httpd_installer_dir }}"
+        remote_src: yes
