@@ -4,7 +4,7 @@
 
   tasks:
 
-    - name:Ensure epel-release is are installed (RedHat).
+    - name: Ensure epel-release is are installed (RedHat).
       package:
         name: epel-release 
         state: present
