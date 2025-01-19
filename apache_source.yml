@@ -109,3 +109,11 @@
       command: >
         {{ httpd_source_configure_command }}
         chdir={{ httpd_installer_dir }}/{{ httpd_source_version }}
+
+    - name: Make and install HTTPD.
+      command: >
+        {{ item }}
+        chdir={{ httpd_installer_dir }}/{{ httpd_source_version }}
+      with_items:
+        - make
+        - make install
