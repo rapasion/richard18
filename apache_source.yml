@@ -110,12 +110,6 @@
         {{ httpd_source_configure_command }}
         chdir={{ httpd_installer_dir }}/{{ httpd_source_version }}
 
-    - name: Ensure GML Source DIR set correct permission
-      shell: sh -c "{{ item }}"
-      with_items:
-        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
-        - "sudo chmod 750 /export/home"
-
     - name: Make and install HTTPD.
       command: >
         {{ item }}
@@ -126,3 +120,9 @@
       become: yes
       become_method: sudo
       become_user: root
+
+    - name: Ensure GML Source DIR set correct permission
+      shell: sh -c "{{ item }}"
+      with_items:
+        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
+        - "sudo chmod 750 /export/home"
