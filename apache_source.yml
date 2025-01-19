@@ -63,14 +63,14 @@
         state: directory
         mode: "0750"
 
-    - name: Ensure GML Source DIR set correct permission
-      shell: sh -c "{{ item }}"
-      with_items:
-        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
-        - "sudo chmod 750 /export/home"
-
     - name: Download latest stable version of APR
       get_url:
         url: "{{ apr_source_url }}{{ apr_source_version }}.tar.gz"
         dest: "{{ httpd_installer_dir }}"
         checksum: "{{ apr_source_checksum }}"
+
+    - name: Ensure GML Source DIR set correct permission
+      shell: sh -c "{{ item }}"
+      with_items:
+        - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
+        - "sudo chmod 750 /export/home"
