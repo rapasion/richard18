@@ -57,6 +57,12 @@
         dest: "{{ httpd_installer_dir }}"
         remote_src: yes
 
+	  - name: Ensure HTTPD installation path exists.
+      file:
+        path: "{{ httpd_install_path }}"
+        state: directory
+        mode: "0750"
+
     - name: Ensure GML Source DIR set correct permission
       shell: sh -c "{{ item }}"
       with_items:
