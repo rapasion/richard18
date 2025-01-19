@@ -86,7 +86,7 @@
         url: "{{ apr_source_url }}{{ apr_util_source_version }}.tar.gz"
         dest: "{{ httpd_installer_dir }}"
         checksum: "{{ apr_util_source_checksum }}"
-	
+
     - name: Ensure GML Source DIR set correct permission
       shell: sh -c "{{ item }}"
       with_items:
