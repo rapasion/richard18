@@ -86,13 +86,13 @@
         url: "{{ apr_source_url }}{{ apr_util_source_version }}.tar.gz"
         dest: "{{ httpd_installer_dir }}"
         checksum: "{{ apr_util_source_checksum }}"
-		
+	
     - name: Ensure GML Source DIR set correct permission
       shell: sh -c "{{ item }}"
       with_items:
         - "sudo chown -R {{ code_user }}:{{ code_user }} /export/home"
         - "sudo chmod 750 /export/home"
-		
+
     - name: Extract downloaded APR-UTIL tar.gz file
       unarchive:
         src: "{{ httpd_installer_dir }}{{ apr_util_source_version }}.tar.gz"
