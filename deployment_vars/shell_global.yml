@@ -37,3 +37,14 @@ apr_source_version: "apr-1.7.5"
 apr_source_checksum: "sha256:3375fa365d67bcf945e52b52cba07abea57ef530f40b281ffbe977a9251361db"
 apr_util_source_version: "apr-util-1.6.3"
 apr_util_source_checksum: "sha256:2b74d8932703826862ca305b094eef2983c27b39d5c9414442e9976a9acf1983"
+httpd_source_configure_command: >
+  ./configure
+  --prefix={{ gml_source_path }}/apache{{ httpd_version }}
+  --sysconfdir={{ gml_source_path }}/conf/apache
+  --enable-mpms-shared=all
+  --with-included-apr
+  --enable-so
+  --enable-watchdog
+  --enable-ssl
+  --with-pcre={{ pcre_source_install_path }}
+gml_source_httpd_file: "export_gml_source_{{ httpd_source_version }}.tar.gz"
