@@ -117,3 +117,6 @@
       with_items:
         - make
         - make install
+      become: yes
+      become_method: sudo
+      become_user: root
