@@ -98,3 +98,14 @@
         src: "{{ httpd_installer_dir }}{{ apr_util_source_version }}.tar.gz"
         dest: "{{ httpd_installer_dir }}"
         remote_src: yes
+
+    - name: Move APR inside HTTPD installation dir
+      command: mv {{ httpd_installer_dir }}{{ apr_source_version }} {{ httpd_installer_dir }}/{{ httpd_source_version }}/srclib/apr
+
+    - name: Move APR-UTIL inside HTTPD installation dir
+      command: mv {{ httpd_installer_dir }}{{ apr_util_source_version }} {{ httpd_installer_dir }}/{{ httpd_source_version }}/srclib/apr-util
+
+    - name: Run configure script.
+      command: >
+        {{ httpd_source_configure_command }}
+        chdir={{ httpd_installer_dir }}/{{ httpd_source_version }}
