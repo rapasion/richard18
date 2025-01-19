@@ -57,7 +57,7 @@
         dest: "{{ httpd_installer_dir }}"
         remote_src: yes
 
-	  - name: Ensure HTTPD installation path exists.
+    - name: Ensure HTTPD installation path exists.
       file:
         path: "{{ httpd_install_path }}"
         state: directory
